@@ -2,17 +2,17 @@
 
 namespace Code.Core.Common
 {
-    public sealed class RecatValue<T> : IDisposable
+    public sealed class ReactValue<T> : IDisposable
     {
         private T _value;
 
-        public RecatValue(T value) : base()
+        public ReactValue(T value) : base()
         {
             _value = value;
             ValueChanged = vaule => { };
         }
 
-        public RecatValue()
+        public ReactValue()
         {
             ValueChanged = vaule => { };
         }

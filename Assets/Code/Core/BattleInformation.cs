@@ -7,10 +7,10 @@ namespace Code.Core
     {
         public BattleInformation(int startResourcesCount)
         {
-            ResourcesValue = new RecatValue<int>(startResourcesCount);
+            ResourcesValue = new ReactValue<int>(startResourcesCount);
         }
 
-        public RecatValue<int> ResourcesValue { get; }
+        public ReactValue<int> ResourcesValue { get; }
 
 
         public void Dispose()

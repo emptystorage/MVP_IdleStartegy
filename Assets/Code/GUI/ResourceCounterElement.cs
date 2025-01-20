@@ -7,6 +7,7 @@ using Code.Core;
 
 namespace Code.GUI
 {
+
     public sealed class ResourceCounterElement : MonoBehaviour
     {
 
@@ -17,7 +18,8 @@ namespace Code.GUI
         public void Construct(BattleInformation battleInformation)
         {
             BattleInformation = battleInformation;
-            _countText.text = BattleInformation.ResourcesValue.Value.ToString();
+            BattleInformation.ResourcesValue.ValueChanged += UpdateCountText;
+            UpdateCountText(BattleInformation.ResourcesValue.Value);
         }
 
         private BattleInformation BattleInformation { get; set; }
@@ -29,6 +31,9 @@ namespace Code.GUI
 
         private void OnDestroy()
         {
+            if (BattleInformation != null) 
+                BattleInformation.ResourcesValue.ValueChanged -= UpdateCountText;
+
             StopAllCoroutines();
         }
 
@@ -44,7 +49,6 @@ namespace Code.GUI
                 if(currentTime <= 0)
                 {
                     BattleInformation.ResourcesValue.Value++;
-                    _countText.text = BattleInformation.ResourcesValue.Value.ToString();
                     currentTime = updateTickTime;
                 }
 
@@ -53,6 +57,11 @@ namespace Code.GUI
 
                 yield return null;
             }
+        }
+
+        private void UpdateCountText(int value)
+        {
+            _countText.text = BattleInformation.ResourcesValue.Value.ToString();
         }
     }
 }
