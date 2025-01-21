@@ -13,7 +13,7 @@ namespace Code.Installers
 
         public override void Install()
         {
-            this.Bind<UnitButtonPool, UnitButton>(_unitButtonPrefab).AsTransit();
+            this.Bind<UnitButtonPool, UnitButton>(_unitButtonPrefab);
 
             this.Bind(_resourcesElement).IsCreated().AsSingle();
             this.Bind(_unitButtonsRootElement).IsCreated().AsSingle();
