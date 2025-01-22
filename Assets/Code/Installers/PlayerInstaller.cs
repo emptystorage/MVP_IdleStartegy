@@ -7,7 +7,7 @@ namespace Code.Installers
 {
     public sealed class PlayerInstaller : MonoInstaller
     {
-        [SerializeField] private UnitData[] _unitData;
+        [SerializeField] private PlayerWarriorButtonData[] _unitData;
 
         public override void Install()
         {

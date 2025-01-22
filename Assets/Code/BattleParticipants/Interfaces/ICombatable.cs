@@ -1,7 +1,8 @@
-﻿namespace Code.BattleParticipant
+﻿namespace Code.BattleParticipants
 {
     public interface ICombatable
     {
+        int Damage { get; }
         float HuntDistance { get; }
         float AttackDistance { get; }
         bool IsAttacking { get; }

@@ -1,12 +1,13 @@
 ﻿using EmptyDI.Pool;
 using Code.GUI;
 using Code.GameData;
+using UnityEngine;
 
 namespace Code.Core.Pools
 {
-    public sealed class UnitButtonPool : DIPool<UnitButton>
+    public sealed class PlayerWarriorButtonPool : DIPool<PlayerWarriorButton>
     {
-        public UnitButton Spawn(UnitButtonsRootElement root, UnitData data)
+        public PlayerWarriorButton Spawn(UnitButtonsRootElement root, PlayerWarriorButtonData data)
         {
             var button = base.Spawn();
             button.transform.SetParent(root.transform);
@@ -16,12 +17,12 @@ namespace Code.Core.Pools
             return button;
         }
 
-        protected override void OnSpawn(UnitButton @object)
+        protected override void OnSpawn(PlayerWarriorButton @object)
         {
             @object.gameObject.SetActive(true);
         }
 
-        protected override void OnDespawn(UnitButton @object)
+        protected override void OnDespawn(PlayerWarriorButton @object)
         {
             @object.gameObject.SetActive(false);
         }

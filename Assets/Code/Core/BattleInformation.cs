@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Generic;
 using Code.Core.Common;
-using Code.BattleParticipant;
+using Code.BattleParticipants;
+using Code.Core.Pools;
 
 namespace Code.Core
 {
     public sealed class BattleInformation : IDisposable
     {
-        private readonly Dictionary<Team, LinkedList<BattleParticipant.BattleParticipant>> UnitInBattle;
+        private readonly Dictionary<Team, LinkedList<BattleParticipant>> UnitInBattle;
 
         public BattleInformation(int startResourcesCount)
         {
-            UnitInBattle = new Dictionary<Team, LinkedList<BattleParticipant.BattleParticipant>>();
+            UnitInBattle = new Dictionary<Team, LinkedList<BattleParticipant>>();
 
             ResourcesValue = new ReactValue<int>(startResourcesCount);
             EnemyUnitCount = new ReactValue<int>();
@@ -22,7 +23,7 @@ namespace Code.Core
         public ReactValue<int> EnemyUnitCount { get; }
         public ReactValue<int> PlayerUnitCount { get; }
 
-        public void AddUnit(in BattleParticipant.BattleParticipant unit)
+        public void AddUnit(in BattleParticipant unit)
         {
             if(!UnitInBattle.TryGetValue(unit.Team, out var list))
             {
@@ -34,13 +35,13 @@ namespace Code.Core
             ChangeUnitCount(unit.Team, 1);
         }
 
-        public IReadOnlyCollection<BattleParticipant.BattleParticipant> GetUnitList(in BattleParticipant.BattleParticipant unit)
+        public IReadOnlyCollection<BattleParticipant> GetUnitList(in BattleParticipant unit)
         {
             UnitInBattle.TryGetValue(unit.Team, out var list);
             return list;
         }
 
-        public void RemoveUnit(in BattleParticipant.BattleParticipant unit)
+        public void RemoveUnit(in BattleParticipant unit)
         {
             if(UnitInBattle.TryGetValue(unit.Team, out var list))
             {

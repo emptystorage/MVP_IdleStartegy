@@ -1,4 +1,4 @@
-﻿namespace Code.BattleParticipant
+﻿namespace Code.BattleParticipants
 {
     public enum Team
     {

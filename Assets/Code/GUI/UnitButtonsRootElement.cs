@@ -8,7 +8,7 @@ namespace Code.GUI
 {
     public sealed class UnitButtonsRootElement : MonoBehaviour
     {
-        private UnitButtonPool _pool;
+        private PlayerWarriorButtonPool _pool;
         private PlayerInformation _playerInformation;
         [SerializeField] private Transform _removePivotPoint;
         [SerializeField] private Transform _createPivotPoint;
@@ -16,7 +16,7 @@ namespace Code.GUI
         [SerializeField] private float _delay;
 
         [Inject]
-        public void Construct(UnitButtonPool pool, PlayerInformation playerInformation)
+        public void Construct(PlayerWarriorButtonPool pool, PlayerInformation playerInformation)
         {
             _pool = pool;
             _playerInformation = playerInformation;

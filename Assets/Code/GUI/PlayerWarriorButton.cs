@@ -1,4 +1,5 @@
 ﻿using Code.Core;
+using Code.Core.Command;
 using Code.Core.Pools;
 using Code.GameData;
 using EmptyDI;
@@ -11,26 +12,28 @@ using UnityEngine.UI;
 namespace Code.GUI
 {
     [RequireComponent(typeof(Button))]
-    public sealed class UnitButton : MonoBehaviour
+    public sealed class PlayerWarriorButton : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _resourcesCostText;
         [SerializeField] private Image _unitIcon;
         [SerializeField] private GameObject _soldRoot;
         private Transform _point;
         private Button _button;
-        private UnitButtonPool _pool;
+        private PlayerWarriorButtonPool _pool;
         private BattleInformation _battleInformation;
-        private UnitData _data;
+        private PlayerWarriorButtonData _data;
+        private CreateWarriorCommand _createCommand;
         private float _speed;
 
         [Inject]
-        public void Construct(UnitButtonPool pool, BattleInformation battleInformation)
+        public void Construct(PlayerWarriorButtonPool pool, BattleInformation battleInformation, CreateWarriorCommand createCommand)
         {
             _pool = pool;
             _battleInformation = battleInformation;
+            _createCommand = createCommand;
         }
 
-        public void Setup(UnitData data, Transform point, float speed)
+        public void Setup(PlayerWarriorButtonData data, Transform point, float speed)
         {
             _data = data;
             _point = point;
@@ -67,7 +70,8 @@ namespace Code.GUI
             {
                 _battleInformation.ResourcesValue.Value -= _data.Cost;
                 _soldRoot.SetActive(true);
-                //TODO create unit 
+
+                _createCommand.Execute(_data.Prefab);
             }
             else
             {

@@ -1,15 +1,20 @@
 ﻿using Code.Core;
+using Code.GameData;
 using EmptyDI;
 using System;
+using System.Collections;
 using UnityEngine;
 
-namespace Code.BattleParticipant
+namespace Code.BattleParticipants
 {
     public abstract class BattleParticipant : MonoBehaviour, IHitable
     {
-        public virtual Team Team { get; private set; }
+        [SerializeField] private Team _team;
+
+        public Team Team => _team;
         public int MaxHealth { get; private set; }
         public int CurrentHealth { get; private set; }
+        public int Armor { get; private set; }
 
         protected BattleInformation BattleInformation { get; private set; }
 
@@ -27,24 +32,18 @@ namespace Code.BattleParticipant
             BattleInformation = null;
         }
 
-        private void OnEnable()
-        {
-            BattleInformation.AddUnit(this);
-        }
+        private void OnEnable() => StartCoroutine(Activate());
 
         private void OnDisable()
         {
             BattleInformation.RemoveUnit(this);
         }
 
-        public virtual void Setup()
-        {
-            //TODO setup some unit by data
-        }
+        public abstract void Setup();
 
         public void Hit(int damage)
         {
-            CurrentHealth -= damage;
+            CurrentHealth -= (damage - Armor);
 
             if (CurrentHealth <= 0) 
             {
@@ -55,6 +54,19 @@ namespace Code.BattleParticipant
             {
                 ChangeHealth?.Invoke(CurrentHealth, MaxHealth);
             }
+        }
+
+        protected void SetData(HealthBattleData data)
+        {
+            MaxHealth = data.Health;
+            CurrentHealth = data.Health;
+            Armor = data.Armor;
+        }
+
+        private IEnumerator Activate()
+        {
+            yield return new WaitWhile(() => BattleInformation == null);
+            BattleInformation.AddUnit(this);
         }
     }
 }

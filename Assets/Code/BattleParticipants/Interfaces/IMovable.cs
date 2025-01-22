@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.BattleParticipant
+namespace Code.BattleParticipants
 {
     public interface IMovable
     {

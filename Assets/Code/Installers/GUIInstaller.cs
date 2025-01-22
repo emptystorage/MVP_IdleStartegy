@@ -9,11 +9,11 @@ namespace Code.Installers
     {
         [SerializeField] private ResourceCounterElement _resourcesElement;
         [SerializeField] private UnitButtonsRootElement _unitButtonsRootElement;
-        [SerializeField] private UnitButton _unitButtonPrefab;
+        [SerializeField] private PlayerWarriorButton _unitButtonPrefab;
 
         public override void Install()
         {
-            this.Bind<UnitButtonPool, UnitButton>(_unitButtonPrefab);
+            this.Bind<PlayerWarriorButtonPool, PlayerWarriorButton>(_unitButtonPrefab);
 
             this.Bind(_resourcesElement).IsCreated().AsSingle();
             this.Bind(_unitButtonsRootElement).IsCreated().AsSingle();

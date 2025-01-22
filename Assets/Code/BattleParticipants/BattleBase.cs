@@ -1,11 +1,15 @@
-﻿using UnityEngine;
+﻿using Code.GameData;
+using UnityEngine;
 
-namespace Code.BattleParticipant
+namespace Code.BattleParticipants
 {
     public sealed class BattleBase : BattleParticipant
     {
-        [SerializeField] private Team _team;
+        [SerializeField] private HealthBattleData _data;
 
-        public override Team Team => _team;
+        public override void Setup()
+        {
+            base.SetData(_data);
+        }
     }
 }

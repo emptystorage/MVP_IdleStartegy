@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Code.BattleParticipant
+namespace Code.BattleParticipants
 {
     [RequireComponent(typeof(Animator))]
     public sealed class ParticipantAnimator : MonoBehaviour
