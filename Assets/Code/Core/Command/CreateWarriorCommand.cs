@@ -7,14 +7,15 @@ using Random = UnityEngine.Random;
 
 namespace Code.Core.Command
 {
+
     public sealed class CreateWarriorCommand : IDisposable
     {
         private const float CreatePointOffset = 2;
 
-        private readonly BattleSceneContex BattleSceneContex;
+        private readonly BattleSceneContext BattleSceneContex;
         private readonly WarriorParticipantPool Pool;
 
-        public CreateWarriorCommand(BattleSceneContex battleSceneContex, WarriorParticipantPool pool)
+        public CreateWarriorCommand(BattleSceneContext battleSceneContex, WarriorParticipantPool pool)
         {
             BattleSceneContex = battleSceneContex;
             Pool = pool;
@@ -23,8 +24,8 @@ namespace Code.Core.Command
         public void Execute(in WarriorParticipant prefab)
         {
             var point = prefab.Team == Team.Player 
-                                ? BattleSceneContex.PlayerSpawnPoint.position 
-                                : BattleSceneContex.EnemySpawnPoint.position;
+                                ? BattleSceneContex.PlayerSpawnPoint 
+                                : BattleSceneContex.EnemySpawnPoint;
 
             point += (Vector3)Random.insideUnitCircle * CreatePointOffset;
 

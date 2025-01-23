@@ -7,7 +7,9 @@ namespace Code.Installers
     {
         public override void Install()
         {
+            this.Bind<StartBattleCommand>().AsSingle();
             this.Bind<CreateWarriorCommand>().AsSingle();
+            this.Bind<DestroyWarriorCommand>().AsSingle();
         }
     }
 }

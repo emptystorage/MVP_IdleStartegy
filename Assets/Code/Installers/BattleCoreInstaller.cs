@@ -8,16 +8,15 @@ namespace Code.Installers
 {
     public sealed class BattleCoreInstaller : MonoInstaller
 	{
-        [SerializeField] private Transform _playerSpawnPoint;
-        [SerializeField] private Transform _enemySpawnPoint;
+        [SerializeField] private BattleSceneContext _battleSceneContext;
 		[SerializeField] private int _startResourcesCount;
 
 		public override void Install()
 		{
             this.Bind<WarriorParticipantPool, string, WarriorParticipant>();
+            this.Bind<BattleBasePool, string, BattleBase>();
 
-            this.Bind<BattleSceneContex>()
-                .WhereParameters(_playerSpawnPoint, _enemySpawnPoint)
+            this.Bind<BattleSceneContext>(_battleSceneContext)
                 .AsSingle();
 
             this.Bind<BattleInformation>()
