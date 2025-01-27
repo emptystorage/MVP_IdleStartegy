@@ -9,6 +9,7 @@ namespace Code.Installers
     public sealed class BattleCoreInstaller : MonoInstaller
 	{
         [SerializeField] private BattleSceneContext _battleSceneContext;
+        [SerializeField] private EnemyWaveSpawner _enemyWaveSpawner;
 		[SerializeField] private int _startResourcesCount;
         [SerializeField] private float _battleTime;
 
@@ -20,6 +21,8 @@ namespace Code.Installers
             this.Bind<BattleSceneContext>(_battleSceneContext)
                 .AsSingle();
 
+            this.Bind<EnemyWaveSpawner>(_enemyWaveSpawner)
+                .AsSingle();
 
             var distance = Vector3.Distance(_battleSceneContext.EnemySpawnPoint, _battleSceneContext.PlayerSpawnPoint);
 

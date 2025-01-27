@@ -26,13 +26,10 @@ namespace Code.BattleParticipants
         public void Construct(BattleInformation battleInformation, WarriorParticipantPool pool)
         {
             _pool = pool;
-            base.Construct(battleInformation);
-        }
-
-        private void Awake()
-        {
             Rigidbody = GetComponent<Rigidbody2D>();
             ParticipantAnimator = GetComponent<ParticipantAnimator>();
+
+            base.Construct(battleInformation);
         }
 
         private void Update()

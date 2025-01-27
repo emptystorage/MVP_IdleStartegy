@@ -1,16 +1,19 @@
 ﻿using System;
 using Code.Core.Pools;
 using Code.BattleParticipants;
+using Code.Core.Common;
 
 namespace Code.Core.Command
 {
     public sealed class StartBattleCommand : ICommand, IDisposable
     {
+        private readonly EnemyWaveSpawner EnemyWaveSpawner;
         private readonly BattleBasePool Pool;
         private readonly BattleSceneContext Context;
 
-        public StartBattleCommand(BattleBasePool pool, BattleSceneContext context)
+        public StartBattleCommand(EnemyWaveSpawner enemyWaveSpawner, BattleBasePool pool, BattleSceneContext context)
         {
+            EnemyWaveSpawner = enemyWaveSpawner;
             Pool = pool;
             Context = context;
         }
@@ -19,6 +22,7 @@ namespace Code.Core.Command
         {
             Pool.Spawn(playerBasePrefab).transform.position = Context.PlayerBaseSpawnPoint;
             Pool.Spawn(enemyBasePrefab).transform.position = Context.EnemyBaseSpawnPoint;
+            EnemyWaveSpawner.StartBattle();
         }
 
         public void Dispose()

@@ -862,6 +862,63 @@ RectTransform:
   m_AnchoredPosition: {x: -250, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1032052898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1032052900}
+  - component: {fileID: 1032052899}
+  m_Layer: 0
+  m_Name: EnemyWaveSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1032052899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032052898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c30f0ac1433c144fbc7d16a21302cd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waveDatas:
+  - name: <color=green><b>Wave - 1</b></color>
+    enemyDatas:
+    - name: Enemy type of <color=blue><b>MeleeUnit - Enemy</b></color>
+      prefab: {fileID: 1697986479}
+      count: 2
+    nextWaveTime: 10
+  - name: <color=green><b>Wave - 2</b></color>
+    enemyDatas:
+    - name: Enemy type of <color=blue><b>MeleeUnit - Enemy</b></color>
+      prefab: {fileID: 1697986479}
+      count: 4
+    nextWaveTime: 0
+--- !u!4 &1032052900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032052898}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.083762, y: -0.6979905, z: -0.04817668}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1156522357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,6 +1317,17 @@ Transform:
   - {fileID: 509249861}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1697986479 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4064207288309761091, guid: de730f71a24694d469445afc91911daf, type: 3}
+  m_PrefabInstance: {fileID: 2879448036085343619}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e9d32a61fc43948a0183f885bbdc1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1719449883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,6 +1760,7 @@ MonoBehaviour:
     _enemyBaseSpawnPoint: {fileID: 715686031}
     _playerSpawnPoint: {fileID: 1669337461}
     _enemySpawnPoint: {fileID: 207051586}
+  _enemyWaveSpawner: {fileID: 1032052899}
   _startResourcesCount: 100
   _battleTime: 30
 --- !u!4 &2028989891
@@ -2147,3 +2216,4 @@ SceneRoots:
   - {fileID: 2879448036085343619}
   - {fileID: 1686750537}
   - {fileID: 1958498920}
+  - {fileID: 1032052900}
