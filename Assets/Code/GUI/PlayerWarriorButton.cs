@@ -22,15 +22,13 @@ namespace Code.GUI
         private PlayerWarriorButtonPool _pool;
         private BattleInformation _battleInformation;
         private PlayerWarriorData _data;
-        private CreateWarriorCommand _createCommand;
         private float _speed;
 
         [Inject]
-        public void Construct(PlayerWarriorButtonPool pool, BattleInformation battleInformation, CreateWarriorCommand createCommand)
+        public void Construct(PlayerWarriorButtonPool pool, BattleInformation battleInformation)
         {
             _pool = pool;
             _battleInformation = battleInformation;
-            _createCommand = createCommand;
         }
 
         public void Setup(PlayerWarriorData data, Transform point, float speed)
@@ -71,7 +69,8 @@ namespace Code.GUI
                 _battleInformation.ResourcesValue.Value -= _data.Cost;
                 _soldRoot.SetActive(true);
 
-                _createCommand.Execute(_data.Prefab);
+                var cmd = new CommandConstructor<CreateWarriorCommand>().CreateCommand();
+                cmd.Execute(_data.Prefab);
             }
             else
             {

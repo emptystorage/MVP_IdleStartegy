@@ -4,7 +4,7 @@ using Code.Core.Pools;
 
 namespace Code.Core.Command
 {
-    public sealed class DestroyWarriorCommand : IDisposable
+    public sealed class DestroyWarriorCommand : ICommand, IDisposable
     {
         private readonly WarriorParticipantPool Pool;
 

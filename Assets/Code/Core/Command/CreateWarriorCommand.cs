@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 namespace Code.Core.Command
 {
 
-    public sealed class CreateWarriorCommand : IDisposable
+    public sealed class CreateWarriorCommand : ICommand, IDisposable
     {
         private const float CreatePointOffset = 2;
 

@@ -15,7 +15,7 @@ namespace Code.Core.Common
         {
             yield return null;
 
-            var cmd = EmptyDIConnector.Get<StartBattleCommand>();
+            var cmd = new CommandConstructor<StartBattleCommand>().CreateCommand();
             cmd.Execute(_playerBasePrefab, _enemyBasePrefab);
         }
     }

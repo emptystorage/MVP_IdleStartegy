@@ -4,7 +4,7 @@ using Code.BattleParticipants;
 
 namespace Code.Core.Command
 {
-    public sealed class StartBattleCommand : IDisposable
+    public sealed class StartBattleCommand : ICommand, IDisposable
     {
         private readonly BattleBasePool Pool;
         private readonly BattleSceneContext Context;
