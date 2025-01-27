@@ -10,6 +10,7 @@ namespace Code.Installers
 	{
         [SerializeField] private BattleSceneContext _battleSceneContext;
 		[SerializeField] private int _startResourcesCount;
+        [SerializeField] private float _battleTime;
 
 		public override void Install()
 		{
@@ -19,8 +20,11 @@ namespace Code.Installers
             this.Bind<BattleSceneContext>(_battleSceneContext)
                 .AsSingle();
 
+
+            var distance = Vector3.Distance(_battleSceneContext.EnemySpawnPoint, _battleSceneContext.PlayerSpawnPoint);
+
             this.Bind<BattleInformation>()
-                .WhereParameters(_startResourcesCount)
+                .WhereParameters(_startResourcesCount, (distance / _battleTime))
                 .IsCreated()
                 .AsSingle();
         }

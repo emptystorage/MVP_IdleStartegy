@@ -3,8 +3,8 @@ using Code.BattleParticipants;
 
 namespace Code.GameData
 {
-    [CreateAssetMenu(fileName = "New" + nameof(PlayerWarriorButtonData), menuName = "GameDat/Create/New" + nameof(PlayerWarriorButtonData))]
-    public sealed class PlayerWarriorButtonData : ScriptableObject
+    [CreateAssetMenu(fileName = "New" + nameof(PlayerWarriorData), menuName = "GameDat/Create/New" + nameof(PlayerWarriorData))]
+    public sealed class PlayerWarriorData : ScriptableObject
     {
         [SerializeField] private WarriorParticipant _prefab;
         [SerializeField] private Sprite _icon;

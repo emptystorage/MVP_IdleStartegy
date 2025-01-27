@@ -29,6 +29,7 @@ namespace Code.BattleParticipants
 
         private void OnDestroy()
         {
+            StopAllCoroutines();
             BattleInformation = null;
         }
 
@@ -36,6 +37,7 @@ namespace Code.BattleParticipants
 
         private void OnDisable()
         {
+            StopAllCoroutines();
             BattleInformation.RemoveUnit(this);
         }
 

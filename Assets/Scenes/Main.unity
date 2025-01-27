@@ -1693,6 +1693,7 @@ MonoBehaviour:
     _playerSpawnPoint: {fileID: 1669337461}
     _enemySpawnPoint: {fileID: 207051586}
   _startResourcesCount: 100
+  _battleTime: 30
 --- !u!4 &2028989891
 Transform:
   m_ObjectHideFlags: 0

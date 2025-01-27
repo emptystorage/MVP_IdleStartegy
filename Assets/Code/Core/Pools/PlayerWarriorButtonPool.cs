@@ -7,7 +7,7 @@ namespace Code.Core.Pools
 {
     public sealed class PlayerWarriorButtonPool : DIPool<PlayerWarriorButton>
     {
-        public PlayerWarriorButton Spawn(UnitButtonsRootElement root, PlayerWarriorButtonData data)
+        public PlayerWarriorButton Spawn(UnitButtonsRootElement root, PlayerWarriorData data)
         {
             var button = base.Spawn();
             button.transform.SetParent(root.transform);

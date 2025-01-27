@@ -17,14 +17,20 @@ namespace Code.BattleParticipants
             _animator = GetComponent<Animator>();
         }
 
-        public void PlayAnimation(string animationName, float offset, float animationSpeed = 1)
+        private void OnDestroy()
+        {
+            ExecutedAnimationEvent = null;
+        }
+
+        public void PlayAnimation(string animationName, float offset = 0.1f, float animationSpeed = 1)
         {
             _animator.SetFloat(AnimationSpeedParameter, animationSpeed);
+            _animator.CrossFade(animationName, offset);
         }
 
         public void OnSendAnimationEvent(AnimationEvent animationEvent)
         {
-
+            ExecutedAnimationEvent?.Invoke();
         }
     }
 }

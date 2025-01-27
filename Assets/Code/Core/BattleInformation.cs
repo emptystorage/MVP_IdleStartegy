@@ -10,18 +10,20 @@ namespace Code.Core
     {
         private readonly Dictionary<Team, LinkedList<BattleParticipant>> UnitInBattle;
 
-        public BattleInformation(int startResourcesCount)
+        public BattleInformation(int startResourcesCount, float participantSpeed)
         {
             UnitInBattle = new Dictionary<Team, LinkedList<BattleParticipant>>();
 
             ResourcesValue = new ReactValue<int>(startResourcesCount);
             EnemyUnitCount = new ReactValue<int>();
             PlayerUnitCount = new ReactValue<int>();
+            ParticipantSpeed = participantSpeed;
         }
 
         public ReactValue<int> ResourcesValue { get; }
         public ReactValue<int> EnemyUnitCount { get; }
         public ReactValue<int> PlayerUnitCount { get; }
+        public float ParticipantSpeed { get; }
 
         public void AddUnit(in BattleParticipant unit)
         {
@@ -35,9 +37,9 @@ namespace Code.Core
             ChangeUnitCount(unit.Team, 1);
         }
 
-        public IReadOnlyCollection<BattleParticipant> GetUnitList(in BattleParticipant unit)
+        public IReadOnlyCollection<BattleParticipant> GetUnitList(in BattleParticipant unit, Team team)
         {
-            UnitInBattle.TryGetValue(unit.Team, out var list);
+            UnitInBattle.TryGetValue(team, out var list);
             return list;
         }
 

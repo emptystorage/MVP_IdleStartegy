@@ -6,13 +6,13 @@ namespace Code.GameData
     public class ComabatData : HealthBattleData
     {
         [SerializeField] private int _damage;
-        [SerializeField] private float _speed;
         [SerializeField] private float _huntDistance;
         [SerializeField] private float _attackDistance;
+        [SerializeField] private float _reloadTime;
 
         public int Damage => _damage;
-        public float Speed => _speed;
         public float HuntDistance => _huntDistance;
         public float AttackDistance => _attackDistance;
+        public float ReloadTime => _reloadTime; 
     }
 }

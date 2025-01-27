@@ -2,16 +2,21 @@
 using Code.Core.Pools;
 using Code.GameData;
 using EmptyDI;
+using Unity.Plastic.Newtonsoft.Json.Serialization;
 using UnityEngine;
 
 namespace Code.BattleParticipants
 {
-    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(ParticipantAnimator))]
     public abstract class WarriorParticipant : BattleParticipant, ICombatable, IMovable
     {
         private WarriorParticipantPool _pool;
+        private BattleParticipant _target;
+
         public Rigidbody2D Rigidbody { get; private set; }
+        public ParticipantAnimator ParticipantAnimator { get; private set; }
         public int Damage { get; private set; }
+        public float ReloadTime { get; private set; }
         public float HuntDistance { get; private set; }
         public float AttackDistance { get; private set; }
         public float Speed { get; private set; }
@@ -27,11 +32,13 @@ namespace Code.BattleParticipants
         private void Awake()
         {
             Rigidbody = GetComponent<Rigidbody2D>();
+            ParticipantAnimator = GetComponent<ParticipantAnimator>();
         }
 
         private void Update()
         {
             if (IsAttacking) return;
+
             Combat();
         }
 
@@ -41,10 +48,22 @@ namespace Code.BattleParticipants
         {
             if(TryGetTarget(out var targetInfo))
             {
+                Debug.Log($"## owner - {transform.name} target - {targetInfo.target.name} - distance - {targetInfo.distance}");
+
                 if(targetInfo.distance <= AttackDistance)
                 {
+                    //TEST
                     Attack(targetInfo.target);
+                    Invoke(nameof(ReloadComplete), ReloadTime);
+                    //NORMAL
+                    //_target = targetInfo.target;
+                    //ParticipantAnimator.PlayAnimation(ParticipantAnimationName.Attack);
+                    //ParticipantAnimator.ExecutedAnimationEvent += OnAttackHandling;
+
                     IsAttacking = true;
+                    Rigidbody.velocity = default;
+                    Rigidbody.angularVelocity = default;
+
                     return;
                 }
 
@@ -69,9 +88,10 @@ namespace Code.BattleParticipants
         protected void SetData(ComabatData data)
         {
             Damage = data.Damage;
+            ReloadTime = data.ReloadTime;
             HuntDistance = data.HuntDistance;
             AttackDistance = data.AttackDistance;
-            Speed = data.Speed;
+            Speed = BattleInformation.ParticipantSpeed;
 
             base.SetData(data);
         }
@@ -80,7 +100,7 @@ namespace Code.BattleParticipants
         {
             targetInfo = default;
 
-            var targetList = BattleInformation.GetUnitList(this);
+            var targetList = BattleInformation.GetUnitList(this, Team == Team.Player ? Team.Enemy : Team.Player);
             var minDistance = float.PositiveInfinity;
             var distance = float.PositiveInfinity;
             
@@ -88,6 +108,8 @@ namespace Code.BattleParticipants
             {
                 foreach (var item in targetList)
                 {
+                    if (item.Equals(this)) continue;
+
                     distance = Vector3.Distance(transform.position, item.transform.position);
 
                     if(distance < minDistance)
@@ -103,6 +125,18 @@ namespace Code.BattleParticipants
             return targetInfo.target != default;
         }
 
+        private void OnAttackHandling()
+        {
+            Attack(_target);
+            Invoke(nameof(ReloadComplete), ReloadTime);
+
+            ParticipantAnimator.ExecutedAnimationEvent -= OnAttackHandling;
+        }
+
+        private void ReloadComplete()
+        {
+            IsAttacking = false;
+        }
 
         private ref struct TargetInfo
         {

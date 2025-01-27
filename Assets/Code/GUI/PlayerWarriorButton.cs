@@ -21,7 +21,7 @@ namespace Code.GUI
         private Button _button;
         private PlayerWarriorButtonPool _pool;
         private BattleInformation _battleInformation;
-        private PlayerWarriorButtonData _data;
+        private PlayerWarriorData _data;
         private CreateWarriorCommand _createCommand;
         private float _speed;
 
@@ -33,7 +33,7 @@ namespace Code.GUI
             _createCommand = createCommand;
         }
 
-        public void Setup(PlayerWarriorButtonData data, Transform point, float speed)
+        public void Setup(PlayerWarriorData data, Transform point, float speed)
         {
             _data = data;
             _point = point;

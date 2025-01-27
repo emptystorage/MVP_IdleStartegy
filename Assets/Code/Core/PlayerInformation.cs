@@ -6,12 +6,12 @@ namespace Code.Core
 {
     public sealed class PlayerInformation
     {
-        public PlayerInformation(PlayerWarriorButtonData[] unitDatas)
+        public PlayerInformation(PlayerWarriorData[] unitDatas)
         {
             UnitData = unitDatas;
         }
 
-        public IReadOnlyList<PlayerWarriorButtonData> UnitData { get; }//TODO rework to graf by show chance
+        public IReadOnlyList<PlayerWarriorData> UnitData { get; }//TODO rework to graf by show chance
 
         public ReactValue<int> Coin { get; } = new();
 
