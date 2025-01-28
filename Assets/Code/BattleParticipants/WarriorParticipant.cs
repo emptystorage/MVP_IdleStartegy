@@ -5,6 +5,7 @@ using Code.Core.Pools;
 using Code.GameData;
 using Code.Core.StateMachine;
 using Code.BattleParticipants.States;
+using Code.BattleParticipants.AttackLogic;
 
 namespace Code.BattleParticipants
 {
@@ -14,6 +15,7 @@ namespace Code.BattleParticipants
         private WarriorParticipantPool _pool;
         [SerializeField] private ParticipantAnimator _participantAnimator;
 
+        public abstract IAttackLogic AttackLogic { get; }
         public Rigidbody2D Rigidbody { get; private set; }
         public ParticipantAnimator ParticipantAnimator => _participantAnimator;
         public StateMachine<WarriorParticipant> StateMachine { get; private set; } 
@@ -30,7 +32,7 @@ namespace Code.BattleParticipants
 
             Rigidbody = GetComponent<Rigidbody2D>();
             StateMachine = new StateMachine<WarriorParticipant>(this);
-            StateMachine.ChangeState<MeleeCombatState>(state => state.BattleInformation = battleInformation);
+            StateMachine.ChangeState<CombatState>(state => state.BattleInformation = battleInformation);
 
             base.Construct(battleInformation);
         }
@@ -57,7 +59,7 @@ namespace Code.BattleParticipants
 
         private void Update() => StateMachine.Update();
 
-        protected void SetData(ComabatData data)
+        protected void SetData(CombatData data)
         {
             Damage = data.Damage;
             ReloadTime = data.ReloadTime;

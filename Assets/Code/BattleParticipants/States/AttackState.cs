@@ -11,14 +11,19 @@ namespace Code.BattleParticipants.States
         {
             Owner.Rigidbody.velocity = default;
             Owner.Rigidbody.angularVelocity = default;
-            Owner.ParticipantAnimator.ExecutedAnimationEvent += Hit;
+            Owner.ParticipantAnimator.ExecutedAnimationEvent += OnAttackAnimationEventHandling;
             Owner.ParticipantAnimator.PlayAnimation(ParticipantAnimationName.Attack);
         }
 
-        private void Hit()
+        public override void Exit()
         {
-            Debug.Log("Bonk!");
-            Owner.ParticipantAnimator.ExecutedAnimationEvent -= Hit;
+            Owner.ParticipantAnimator.ExecutedAnimationEvent -= OnAttackAnimationEventHandling;
+        }
+
+        private void OnAttackAnimationEventHandling()
+        {
+            Owner.AttackLogic.Execute(Owner, Target);
+            Owner.ParticipantAnimator.ExecutedAnimationEvent -= OnAttackAnimationEventHandling;
             Owner.StateMachine.ChangeState<ReloadState>();
         }
     }

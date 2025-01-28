@@ -4,7 +4,7 @@ using Code.Core.Pools;
 
 namespace Code.Core.Command
 {
-    public sealed class DestroyWarriorCommand : ICommand, IDisposable
+    public sealed class DestroyWarriorCommand : ICommand
     {
         private readonly WarriorParticipantPool Pool;
 
@@ -16,7 +16,7 @@ namespace Code.Core.Command
         public void Execute(in WarriorParticipant warrior)
         {
             //TODO create coin and VFX
-            Pool.Despawn(warrior.name, warrior);
+            Pool.Despawn(warrior);
         }
 
         public void Dispose()

@@ -5,7 +5,7 @@ using Code.Core.Common;
 
 namespace Code.Core.Command
 {
-    public sealed class StartBattleCommand : ICommand, IDisposable
+    public sealed class StartBattleCommand : ICommand
     {
         private readonly EnemyWaveSpawner EnemyWaveSpawner;
         private readonly BattleBasePool Pool;

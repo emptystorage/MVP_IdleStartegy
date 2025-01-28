@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc759c40c7ff500438693002690e00e9, type: 3}
-  m_Name: MeleeUnitData_1
+  m_Script: {fileID: 11500000, guid: 0950cde18001ae64d92a7268b532cd97, type: 3}
+  m_Name: MeleeUnitDat
   m_EditorClassIdentifier: 
   _health: 100
   _armor: 10
   _damage: 25
   _huntDistance: 2
-  _attackDistance: 0.35
+  _attackDistance: 0.5
   _reloadTime: 1.5

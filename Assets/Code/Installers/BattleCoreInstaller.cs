@@ -16,6 +16,7 @@ namespace Code.Installers
 		public override void Install()
 		{
             this.Bind<WarriorParticipantPool, string, WarriorParticipant>();
+            this.Bind<ProjectilePool, string, Projectile>();
             this.Bind<BattleBasePool, string, BattleBase>();
 
             this.Bind<BattleSceneContext>(_battleSceneContext)

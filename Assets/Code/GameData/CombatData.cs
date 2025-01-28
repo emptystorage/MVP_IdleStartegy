@@ -2,8 +2,8 @@
 
 namespace Code.GameData
 {
-    [CreateAssetMenu(fileName = "New" + nameof(ComabatData), menuName = "GameDat/UnitBattleData/New" + nameof(ComabatData))]
-    public class ComabatData : HealthBattleData
+    [CreateAssetMenu(fileName = "New" + nameof(CombatData), menuName = "GameDat/UnitBattleData/New" + nameof(CombatData))]
+    public class CombatData : HealthBattleData
     {
         [SerializeField] private int _damage;
         [SerializeField] private float _huntDistance;

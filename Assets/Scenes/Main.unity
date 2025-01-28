@@ -902,7 +902,10 @@ MonoBehaviour:
     enemyDatas:
     - name: Enemy type of <color=blue><b>MeleeUnit-Enemy</b></color>
       prefab: {fileID: 4252737943615018119, guid: 2a6772b60bae26740bef34e3e0dba2d2, type: 3}
-      count: 4
+      count: 2
+    - name: Enemy type of <color=blue><b>RangeUnit-Enemy</b></color>
+      prefab: {fileID: -5279190142587494561, guid: 8e8ec10f3c8724a47b0be80f57ad1d84, type: 3}
+      count: 1
     nextWaveTime: 0
 --- !u!4 &1032052900
 Transform:

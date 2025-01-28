@@ -4,7 +4,7 @@ using Code.Core.StateMachine;
 
 namespace Code.BattleParticipants.States
 {
-    public sealed class MeleeCombatState : State<WarriorParticipant>
+    public sealed class CombatState : State<WarriorParticipant>
     {
         public BattleInformation BattleInformation { get; set; }
 

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca56b30af7fcd9840aa52e7813169716, type: 3}
   m_Name: Test_3
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 4252737943615018119, guid: ce7001a0736597e47953337f20eefb2f, type: 3}
+  _prefab: {fileID: -7712655070242659626, guid: 18ce31b780139aa40aaa7d148b39c800, type: 3}
   _icon: {fileID: 0}
   _cost: 30

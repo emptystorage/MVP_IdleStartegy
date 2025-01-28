@@ -4,12 +4,11 @@ using Code.BattleParticipants.AttackLogic;
 
 namespace Code.BattleParticipants
 {
-
-    public sealed class MeleeWarrior : WarriorParticipant
+    public sealed class RangeWarrior : WarriorParticipant
     {
-        [SerializeField] private CombatData _data;
+        [SerializeField] private RangeCombatData _data;
 
-        public override IAttackLogic AttackLogic => new MeleeAttacklLogic();
+        public override IAttackLogic AttackLogic => new RangeAttackLogic(_data.ProjectilePrefab);
 
         public override void Setup()
         {

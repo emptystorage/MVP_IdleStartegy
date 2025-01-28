@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c526a5cf276ebc4e9e7ab64f7150511, type: 3}
-  m_Name: Test_BaseHealth
+  m_Script: {fileID: 11500000, guid: 809b221c76c7d7448b5df8d55dc6d1d8, type: 3}
+  m_Name: RangeCombatData
   m_EditorClassIdentifier: 
-  _health: 500
+  _health: 50
   _armor: 0
+  _damage: 50
+  _huntDistance: 3
+  _attackDistance: 2
+  _reloadTime: 4
+  _projectilePrefab: {fileID: 2572764480637455034, guid: 4a7eb23582940d343a537cd725239c07, type: 3}

@@ -1,4 +1,6 @@
-﻿namespace Code.Core.Command
+﻿using System;
+
+namespace Code.Core.Command
 {
-    public interface ICommand { }
+    public interface ICommand : IDisposable { }
 }

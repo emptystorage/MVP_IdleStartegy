@@ -16,7 +16,7 @@ namespace Code.BattleParticipants.States
         {
             if(Time.time >= _time)
             {
-                Owner.StateMachine.ChangeState<MeleeCombatState>();
+                Owner.StateMachine.ChangeState<CombatState>();
             }
         }
     }

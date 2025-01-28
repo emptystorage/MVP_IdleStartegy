@@ -9,6 +9,7 @@ namespace Code.Installers
         {
             this.Bind<StartBattleCommand>().AsSingle();
             this.Bind<CreateWarriorCommand>().AsSingle();
+            this.Bind<CreateProjectileCommand>().AsSingle();
             this.Bind<DestroyWarriorCommand>().AsSingle();
         }
     }
