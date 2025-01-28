@@ -27,7 +27,7 @@ namespace Code.BattleParticipants
             BattleInformation = battleInformation;
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             StopAllCoroutines();
             BattleInformation = null;

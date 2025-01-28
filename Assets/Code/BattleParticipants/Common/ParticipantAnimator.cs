@@ -6,8 +6,6 @@ namespace Code.BattleParticipants
     [RequireComponent(typeof(Animator))]
     public sealed class ParticipantAnimator : MonoBehaviour
     {
-        private const string AnimationSpeedParameter = "Speed";
-
         private Animator _animator;
 
         public event Action ExecutedAnimationEvent;
@@ -24,7 +22,7 @@ namespace Code.BattleParticipants
 
         public void PlayAnimation(string animationName, float offset = 0.1f, float animationSpeed = 1)
         {
-            _animator.SetFloat(AnimationSpeedParameter, animationSpeed);
+            _animator.SetFloat(ParticipantAnimationName.AnimationSpeedParameter, animationSpeed);
             _animator.CrossFade(animationName, offset);
         }
 

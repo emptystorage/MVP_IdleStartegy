@@ -7,10 +7,8 @@ using Code.Core;
 
 namespace Code.GUI
 {
-
     public sealed class ResourceCounterElement : MonoBehaviour
     {
-
         [SerializeField] private Image _fader;
         [SerializeField] private TextMeshProUGUI _countText;
 
