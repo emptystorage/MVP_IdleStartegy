@@ -9,7 +9,7 @@ namespace Code.BattleParticipants
         int Armor { get; }
 
         event Action<int, int> ChangeHealth;
-        event Action Dead;
+        event Action<IHitable> Dead;
 
         void Hit(int damage);
     }

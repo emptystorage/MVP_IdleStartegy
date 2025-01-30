@@ -1,10 +1,10 @@
 ﻿using EmptyDI.Pool;
 using Code.GUI;
 using Code.GameData;
-using UnityEngine;
 
 namespace Code.Core.Pools
 {
+
     public sealed class PlayerWarriorButtonPool : DIPool<PlayerWarriorButton>
     {
         public PlayerWarriorButton Spawn(UnitButtonsRootElement root, PlayerWarriorData data)

@@ -17,7 +17,7 @@ namespace Code.Core.Command
         {
             var projectile = Pool.Spawn(prefab);
             projectile.transform.position = owner.transform.position;
-            projectile.Shoot(target);
+            projectile.Shoot(target, owner.Damage);
         }
 
         public void Dispose()

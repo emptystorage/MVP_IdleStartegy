@@ -2,7 +2,6 @@
 
 namespace Code.Core.Pools
 {
-
     public sealed class WarriorParticipantPool : MonoObjectPool<WarriorParticipant>
     {
         public WarriorParticipant Spawn(WarriorParticipant prefab)

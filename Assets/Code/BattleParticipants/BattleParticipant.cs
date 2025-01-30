@@ -19,7 +19,7 @@ namespace Code.BattleParticipants
         protected BattleInformation BattleInformation { get; private set; }
 
         public event Action<int, int> ChangeHealth;
-        public event Action Dead;
+        public event Action<IHitable> Dead;
 
         [Inject]
         public void Construct(BattleInformation battleInformation)
@@ -31,6 +31,8 @@ namespace Code.BattleParticipants
         {
             StopAllCoroutines();
             BattleInformation = null;
+            ChangeHealth = null;
+            Dead = null;
         }
 
         private void OnEnable() => StartCoroutine(Activate());
@@ -50,7 +52,7 @@ namespace Code.BattleParticipants
             if (CurrentHealth <= 0) 
             {
                 CurrentHealth = 0;
-                Dead?.Invoke();
+                Dead?.Invoke(this);
             }
             else
             {

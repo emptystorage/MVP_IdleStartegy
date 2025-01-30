@@ -4,7 +4,7 @@
     {
         public void Execute(in WarriorParticipant owner, in BattleParticipant target)
         {
-            UnityEngine.Debug.Log("Bonk!");
+            target.Hit(owner.Damage);
         }
     }
 }

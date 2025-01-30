@@ -3,6 +3,7 @@ using EmptyDI;
 using Code.Core;
 using Code.Core.Pools;
 using Code.BattleParticipants;
+using Code.Core.Common;
 
 namespace Code.Installers
 {
@@ -31,6 +32,15 @@ namespace Code.Installers
                 .WhereParameters(_startResourcesCount, (distance / _battleTime))
                 .IsCreated()
                 .AsSingle();
+        }
+
+        //TEST
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Bootstraper.Initialize();
+            }
         }
     }
 }

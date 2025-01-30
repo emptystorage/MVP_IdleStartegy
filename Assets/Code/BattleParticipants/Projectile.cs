@@ -16,9 +16,9 @@ namespace Code.Core.Pools
             _pool = pool;
         }
 
-        public void Shoot(BattleParticipant target)
+        public void Shoot(BattleParticipant target, int damage)
         {
-            StartCoroutine(Fly(target));
+            StartCoroutine(Fly(target, damage));
         }
 
         private void OnDisable()
@@ -26,7 +26,7 @@ namespace Code.Core.Pools
             StopAllCoroutines();
         }
 
-        private IEnumerator Fly(BattleParticipant target)
+        private IEnumerator Fly(BattleParticipant target, int damage)
         {
             var distance = float.PositiveInfinity;
 
@@ -36,8 +36,8 @@ namespace Code.Core.Pools
                 distance = Vector3.Distance(target.transform.position, transform.position);
                 yield return null;
             }
-            //TODO hit
-            Debug.Log("Shoot");
+
+            target.Hit(damage);
             _pool.Despawn(this);
         }
     }

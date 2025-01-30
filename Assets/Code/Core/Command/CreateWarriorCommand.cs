@@ -4,6 +4,7 @@ using Code.BattleParticipants;
 using Code.Core.Pools;
 
 using Random = UnityEngine.Random;
+using Code.GUI;
 
 namespace Code.Core.Command
 {
@@ -12,12 +13,16 @@ namespace Code.Core.Command
         private const float CreatePointOffset = 2;
 
         private readonly BattleSceneContext BattleSceneContex;
-        private readonly WarriorParticipantPool Pool;
+        private readonly GUISceneContext GUISceneContext;
+        private readonly WarriorParticipantPool WarriorPool;
+        private readonly UnitBattleInfoElementPool UIElementPool;
 
-        public CreateWarriorCommand(BattleSceneContext battleSceneContex, WarriorParticipantPool pool)
+        public CreateWarriorCommand(BattleSceneContext battleSceneContex, GUISceneContext guiSceneContext, WarriorParticipantPool warriorPool, UnitBattleInfoElementPool uiElementPool)
         {
             BattleSceneContex = battleSceneContex;
-            Pool = pool;
+            GUISceneContext = guiSceneContext;
+            WarriorPool = warriorPool;
+            UIElementPool = uiElementPool;
         }
 
         public void Execute(in WarriorParticipant prefab)
@@ -28,8 +33,19 @@ namespace Code.Core.Command
 
             point += (Vector3)Random.insideUnitCircle * CreatePointOffset;
 
-            var warrior = Pool.Spawn(prefab);
+            var warrior = WarriorPool.Spawn(prefab);
             warrior.transform.position = point;
+            warrior.Dead += OnDead;
+
+            //GUI
+            var uiElement = UIElementPool.Spawn(GUISceneContext.UnitBattleInfoElementRoot);
+            uiElement.Setup(warrior);
+        }
+
+        private void OnDead(IHitable participant)
+        {
+            participant.Dead -= OnDead;
+            WarriorPool.Despawn(participant as WarriorParticipant);
         }
 
         public void Dispose()
