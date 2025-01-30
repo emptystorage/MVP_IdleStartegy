@@ -22,7 +22,7 @@ namespace Code.BattleParticipants.States
 
         private void OnAttackAnimationEventHandling()
         {
-            Owner.AttackLogic.Execute(Owner, Target);
+            Owner.Attack(Target);
             Owner.ParticipantAnimator.ExecutedAnimationEvent -= OnAttackAnimationEventHandling;
             Owner.StateMachine.ChangeState<ReloadState>();
         }

@@ -5,7 +5,6 @@ using Code.Core.Pools;
 using Code.GameData;
 using Code.Core.StateMachine;
 using Code.BattleParticipants.States;
-using Code.BattleParticipants.AttackLogic;
 
 namespace Code.BattleParticipants
 {
@@ -15,7 +14,6 @@ namespace Code.BattleParticipants
         private WarriorParticipantPool _pool;
         [SerializeField] private ParticipantAnimator _participantAnimator;
 
-        public abstract IAttackLogic AttackLogic { get; }
         public Rigidbody2D Rigidbody { get; private set; }
         public ParticipantAnimator ParticipantAnimator => _participantAnimator;
         public StateMachine<WarriorParticipant> StateMachine { get; private set; } 
@@ -69,5 +67,7 @@ namespace Code.BattleParticipants
 
             base.SetData(data);
         }
+
+        public virtual void Attack(in BattleParticipant target) { }
     }
 }

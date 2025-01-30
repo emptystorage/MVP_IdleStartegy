@@ -15,7 +15,7 @@ namespace Code.Core.Common
         {
             yield return null;
 
-            var cmd = new CommandConstructor<StartBattleCommand>().CreateCommand();
+            var cmd = new CommandFactory<StartBattleCommand>().Create();
             cmd.Execute(_playerBasePrefab, _enemyBasePrefab);
         }
     }

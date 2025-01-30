@@ -69,7 +69,7 @@ namespace Code.GUI
                 _battleInformation.ResourcesValue.Value -= _data.Cost;
                 _soldRoot.SetActive(true);
 
-                var cmd = new CommandConstructor<CreateWarriorCommand>().CreateCommand();
+                var cmd = new CommandFactory<CreateWarriorCommand>().Create();
                 cmd.Execute(_data.Prefab);
             }
             else

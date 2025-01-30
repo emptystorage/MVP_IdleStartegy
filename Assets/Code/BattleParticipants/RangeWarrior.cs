@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Code.GameData;
-using Code.BattleParticipants.AttackLogic;
+using Code.Core.Command;
 
 namespace Code.BattleParticipants
 {
@@ -8,11 +8,15 @@ namespace Code.BattleParticipants
     {
         [SerializeField] private RangeCombatData _data;
 
-        public override IAttackLogic AttackLogic => new RangeAttackLogic(_data.ProjectilePrefab);
-
         public override void Setup()
         {
             base.SetData(_data);
+        }
+
+        public override void Attack(in BattleParticipant target)
+        {
+            var cmd = new CommandFactory<CreateProjectileCommand>().Create();
+            cmd.Execute(this, target, _data.ProjectilePrefab);
         }
     }
 }

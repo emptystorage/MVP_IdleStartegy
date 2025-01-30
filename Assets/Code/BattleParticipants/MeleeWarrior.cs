@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using Code.GameData;
-using Code.BattleParticipants.AttackLogic;
 
 namespace Code.BattleParticipants
 {
@@ -9,11 +8,14 @@ namespace Code.BattleParticipants
     {
         [SerializeField] private CombatData _data;
 
-        public override IAttackLogic AttackLogic => new MeleeAttacklLogic();
-
         public override void Setup()
         {
             base.SetData(_data);
+        }
+
+        public override void Attack(in BattleParticipant target)
+        {
+            target.Hit(Damage);
         }
     }
 }

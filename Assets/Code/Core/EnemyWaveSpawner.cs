@@ -51,7 +51,7 @@ namespace Code.Core
         private void CreateWave()
         {
             var data = _waveDatas[_waveIndex];
-            var cmd = new CommandConstructor<CreateWarriorCommand>().CreateCommand();
+            var cmd = new CommandFactory<CreateWarriorCommand>().Create();
 
             for (int i = 0; i < data.enemyDatas.Length; i++)
             {
